@@ -1,5 +1,11 @@
-import "./globals.css";
-import Navbar from "./components/Navbar";
+import './globals.css';
+import { Providers } from './providers';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Crowdfunding App',
+  description: 'WAGMI + RainbowKit + Alchemy on Sepolia',
+};
 
 export default function RootLayout({
   children,
@@ -9,8 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useAccount } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import vercel from '../../../public/vercel.svg';
 
 const Navbar = () => {
   const { address, isConnected } = useAccount();
@@ -15,7 +14,7 @@ const Navbar = () => {
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex flex-shrink-0 items-center">
               <Image
-                src={vercel}
+                src="/vercel.svg"
                 alt="Logo"
                 width={32}
                 height={32}
