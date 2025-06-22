@@ -1,41 +1,20 @@
 'use client';
 
-import { WagmiProvider, createConfig, configureChains } from 'wagmi';
-import { sepolia } from 'wagmi/chains';
-import { publicProvider } from 'viem/providers/public';
-import { alchemyProvider } from 'viem/providers/alchemy';
-import {
-  RainbowKitProvider,
-  getDefaultWallets,
-} from '@rainbow-me/rainbowkit';
-import '@rainbow-me/rainbowkit/styles.css';
+import type React from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { WagmiProvider } from 'wagmi';
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 
-const { chains, publicClient } = configureChains(
-  [sepolia],
-  [
-    alchemyProvider({ apiKey: 'O016kwiJVcm6CFTUz2rDWdDhNu7eLf16' }),
-    publicProvider(),
-  ]
-);
+import { config } from '../wagmi';
 
-const { connectors } = getDefaultWallets({
-  appName: 'Crowdfunding App',
-  projectId: '659306a0a48592d4ceea6de4bc11c3d2',
-  chains,
-});
-
-const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient,
-});
+const queryClient = new QueryClient();
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <WagmiProvider config={wagmiConfig}>
-      <RainbowKitProvider >
-        {children}
-      </RainbowKitProvider>
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <RainbowKitProvider>{children}</RainbowKitProvider>
+      </QueryClientProvider>
     </WagmiProvider>
   );
 }

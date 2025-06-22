@@ -1,17 +1,8 @@
-import './globals.css';
+import '../styles/globals.css';
+import '@rainbow-me/rainbowkit/styles.css';
 import { Providers } from './providers';
-import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Crowdfunding App',
-  description: 'WAGMI + RainbowKit + Alchemy on Sepolia',
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
@@ -20,3 +11,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+export default RootLayout;
